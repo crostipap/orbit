@@ -1,0 +1,67 @@
+.login-pf body {
+  background: none !important;
+}
+.login-pf-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  background:
+    radial-gradient(
+      circle at 15% 20%,
+      rgba(99, 102, 241, 0.22),
+      transparent 40%
+    ),
+    radial-gradient(
+      circle at 85% 80%,
+      rgba(16, 185, 129, 0.14),
+      transparent 40%
+    ),
+    var(--bg, #0b0f19);
+}
+.card-pf {
+  border-radius: 16px;
+  max-width: 410px;
+  background: rgba(17, 24, 39, 0.78);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 2.25rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+  color: white;
+}
+.subtitle,
+#kc-header-wrapper,
+#kc-header {
+  display: none;
+}
+#kc-social-providers > h2 {
+  font-size: 12px;
+  text-align: center;
+}
+.pf-m-control,
+.pf-c-input-group,
+#password-confirm,
+#password,
+.pf-c-form-control {
+  background-color: rgba(255, 255, 255, 0.04) !important;
+  color: white;
+}
+.pf-c-form-control:focus,
+.pf-m-control:focus,
+.pf-c-input-group:focus,
+#password-confirm:focus,
+#password:focus,
+.pf-c-form-control:focus {
+  --pf-c-form-control--BorderBottomColor: #6366f1;
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px #6366f159;
+}
+
+@media (min-width: 768px) {
+  .login-pf-page .card-pf {
+    padding: 36px;
+  }
+}

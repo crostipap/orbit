@@ -1,0 +1,34 @@
+name: base-backend-config
+services:
+  keycloak:
+    container_name: local_keycloack
+    image: quay.io/keycloak/keycloak:25.0.5
+    ports:
+      - "9090:8080"
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: password
+      KC_SPI_THEME_STATIC_MAX_AGE: -1
+      KC_SPI_THEME_CACHE_THEMES: "false"
+      KC_SPI_THEME_CACHE_TEMPLATES: "false"
+    volumes:
+      - ./themes:/opt/keycloak/themes
+      - organiza_keycloak_data:/opt/keycloak/data
+    command:
+      - "start-dev"
+  mongo:
+    container_name: mongo
+    image: mongo:8.0
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: admin
+    volumes:
+      - organiza-data:/data/db
+      
+volumes:
+  organiza_keycloak_data:
+    external: true
+  organiza-data:

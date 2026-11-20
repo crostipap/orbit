@@ -10,7 +10,6 @@ function readSavedLocale() {
     const saved = localStorage.getItem(STORAGE_KEY);
     if (saved && translations[saved]) return saved;
   } catch {
-    /* storage unavailable */
   }
   return DEFAULT_LOCALE;
 }
@@ -22,7 +21,6 @@ class I18n {
     document.documentElement.lang = this.locale;
   }
 
-  /** Translate a key, replacing {placeholders} with the given params. */
   t(key, params = {}) {
     const template = translations[this.locale]?.[key] ?? translations[DEFAULT_LOCALE][key] ?? key;
     return template.replace(/\{(\w+)\}/g, (_, name) => params[name] ?? `{${name}}`);
@@ -35,7 +33,6 @@ class I18n {
     try {
       localStorage.setItem(STORAGE_KEY, code);
     } catch {
-      /* storage unavailable */
     }
   }
 }

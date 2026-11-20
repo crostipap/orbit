@@ -1,27 +1,26 @@
-import Keycloak from 'keycloak-js';
+import Keycloak from "keycloak-js";
 
 const keycloak = new Keycloak({
-  url: import.meta.env.VITE_KEYCLOACK_URL || 'http://localhost:9090',
-  realm: import.meta.env.VITE_KEYCLOACK_REALM || 'organiza-realm',
-  clientId: import.meta.env.VITE_KEYCLOACK_CLIENT_ID || 'organiza',
+  url: import.meta.env.VITE_KEYCLOACK_URL,
+  realm: import.meta.env.VITE_KEYCLOACK_REALM,
+  clientId: import.meta.env.VITE_KEYCLOACK_CLIENT_ID,
 });
 
 export const auth = $state({
   initialized: false,
   authenticated: false,
   userProfile: null,
-  token: null
+  token: null,
 });
-
 
 export async function initKeycloak() {
   if (auth.initialized) return;
 
   try {
     const authenticated = await keycloak.init({
-      onLoad: 'check-sso',
+      onLoad: "check-sso",
       redirectUri: "http://localhost:3000/",
-      silentCheckSsoRedirectUri: `${location.origin}/silent-check-sso.html`
+      silentCheckSsoRedirectUri: `${location.origin}/silent-check-sso.html`,
     });
 
     auth.authenticated = authenticated;
@@ -33,7 +32,7 @@ export async function initKeycloak() {
       auth.userProfile = profile;
     }
   } catch (error) {
-    console.error('Keycloak init failed:', error);
+    console.error("Keycloak init failed:", error);
     auth.initialized = true;
   }
 }
